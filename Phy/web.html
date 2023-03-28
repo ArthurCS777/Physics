@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Food to Cook</title>
+  </head>
+  <body>
+    <h1>Food to Cook</h1>
+    <ul>
+      <li>
+        <img src="image/pasta.jpg" alt="Pasta with Tomato Sauce" onclick="startTimer(12)">
+        <img src="image/chicken.jpg" alt="Grilled Chicken" onclick="startTimer(20)">
+      </li>
+      <li>
+        <img src="image/vegetables.jpg" alt="Roasted Vegetables" onclick="startTimer(15)">
+      </li>
+    </ul>
+    
+    <script>
+      function startTimer(cookingTime) {
+        var countDownDate = new Date().getTime() + cookingTime * 60000;
+        document.getElementById("timer").innerHTML = "Calculating...";
+        const testSleep = async () => {
+          await sleep(5000);
+      }
+        var x = setInterval(function() {
+          var now = new Date().getTime();
+          var distance = countDownDate - now;
+          
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+          document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+          
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "Cooking time is up!";
+          }
+        }, 1000);
+      }
+    </script>
+    
+    <p>Timer: <span id="timer"></span></p>
+  </body>
+</html>
